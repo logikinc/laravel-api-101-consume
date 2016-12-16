@@ -3,16 +3,28 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Services\Api\Articles;
 
 class ArticleController extends Controller
 {
-    public function index()
+    protected $articles;
+
+    public function __construct(Articles $articles)
     {
-        return view('articles.index');
+        $this->articles = $articles;
     }
 
-    public function show()
+    public function index()
     {
-        return view('articles.show');
+        $articles = $this->articles->all();
+
+        return view('articles.index')->with(compact('articles'));
+    }
+
+    public function show($id)
+    {
+        $article = $this->articles->get($id);
+
+        return view('articles.show')->with(compact('article'));
     }
 }
