@@ -1,40 +1,49 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img width="150"src="https://laravel.com/laravel.png"></a></p>
+# Laravel API 101 - CONSUME
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+It's alive! In this lesson we will create a new Laravel 5.3 application which will use Guzzle to connect to our API that we have built in the previous lessons. We will fetch the articles, display them on the home page and provide links to view each article.
 
-## About Laravel
+We will create a service class which will handle authentication and retrieving the articles from the API. In return we will get a Collection with which we can do whatever we want. We will be using the `index` and `show` methods from our API to retrieve articles.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+**Why this approach?**
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+If you have a single source of truth, in this case the articles database, and you want to display them on multiple sites, it is much easier to retrieve them from the API than to duplicate models on other sites and connect directly to the database. If you duplicate models, you will have to maintain them, and trust me this quickly becomes a pain in the ass.
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb combination of simplicity, elegance, and innovation give you tools you need to build any application with which you are tasked.
+With this approach, you will get a collection of articles with which you can do whatever you want. If you use this approach then it does not matter to you, which backend technology is behind the API. You can move your API to Python, Node.js... it does not matter, since you always get the same response from the API. Same applies to the sites where you present the resources from the API. It can be a Laravel application, Django, JavaScript or whatever.
 
-## Learning Laravel
+You can change the technology and code behind the API, but as long as it returns the same formatted responses, all other sites that depend on it will continue to work.
 
-Laravel has the most extensive and thorough documentation and video tutorial library of any modern web application framework. The [Laravel documentation](https://laravel.com/docs) is thorough, complete, and makes it a breeze to get started learning the framework.
+*This way it is much easier to maintain applications, since we have decoupled the technologies behind them.*
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 900 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+## Installation
 
-## Contributing
+Clone repository to your drive and type in terminal there:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+```
+composer install
+```
 
-## Security Vulnerabilities
+## Configuration
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+Copy file `.env.example` to `.env` file:
 
-## License
+```
+cp .env.example .env
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+and change the `APP_KEY` in `.env` using:
+
+```
+php artisan key:generate
+```
+
+## Running
+
+From terminal type:
+
+```
+php artisan serve --port=8888
+```
+
+You should get an address to open in your browser like http://localhost:8888.
+
+**Have fun!**

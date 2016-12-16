@@ -11,6 +11,5 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', ['uses' => 'ArticleController@index', 'as' => 'home']);
+Route::get('articles/{article}', ['uses' => 'ArticleController@show', 'as' => 'articles.show']);
