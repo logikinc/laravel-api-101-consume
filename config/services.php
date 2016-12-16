@@ -35,4 +35,8 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'api' => [
+        'endpoint' => env('API_ENDPOINT')
+    ]
+
 ];

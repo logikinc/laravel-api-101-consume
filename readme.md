@@ -2,7 +2,7 @@
 
 It's alive! In this lesson we will create a new Laravel 5.3 application which will use Guzzle to connect to our API that we have built in the previous lessons. We will fetch the articles, display them on the home page and provide links to view each article.
 
-We will create a service class which will handle authentication and retrieving the articles from the API. In return we will get a Collection with which we can do whatever we want. We will be using the `index` and `show` methods from our API to retrieve articles.
+We will create a service class which will handle retrieving the articles from the API. In return we will get a Collection with which we can do whatever we want. We will be using the `index` and `show` methods from our API to retrieve articles.
 
 **Why this approach?**
 
