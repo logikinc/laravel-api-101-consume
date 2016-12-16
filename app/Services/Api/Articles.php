@@ -33,4 +33,39 @@ class Articles
 
          return $body->data;
     }
+
+    public function create(array $data)
+    {
+        $this->guzzle->request('POST', $this->endpoint, [
+            'form_params' => $data,
+            'headers' => [
+                'Authorization' => 'Bearer ' . config('services.api.token'),
+            ],
+        ]);
+
+        return true;
+    }
+
+    public function update($id, array $data)
+    {
+        $this->guzzle->request('PUT', $this->endpoint . "/{$id}", [
+            'form_params' => $data,
+            'headers' => [
+                'Authorization' => 'Bearer ' . config('services.api.token'),
+            ],
+        ]);
+
+        return true;
+    }
+
+    public function delete($id)
+    {
+        $this->guzzle->request('DELETE', $this->endpoint . "/{$id}", [
+            'headers' => [
+                'Authorization' => 'Bearer ' . config('services.api.token'),
+            ],
+        ]);
+
+        return true;
+    }
 }

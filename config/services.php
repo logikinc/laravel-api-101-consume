@@ -36,7 +36,8 @@ return [
     ],
 
     'api' => [
-        'endpoint' => env('API_ENDPOINT')
+        'endpoint' => env('API_ENDPOINT'),
+        'token' => env('API_TOKEN')
     ]
 
 ];
